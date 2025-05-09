@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <random>
+#include <chrono>
 
 
 using namespace std;
@@ -26,6 +27,7 @@ struct team
     int score; //for every game
     int pTotal; //points total
     //int teamRating (total rank of players / # of players)
+    //City
 
     vector<bool> hasPlayed;
 };
@@ -37,6 +39,7 @@ team buildTeam (string name)
 {
     team newTeam;
     newTeam.teamName = name;
+    //newTeam.city = "default"
     newTeam.wins = 0;
     newTeam.loses = 0;
     newTeam.winPercent = 0;
@@ -45,6 +48,50 @@ team buildTeam (string name)
     newTeam.pTotal = 0;
 
     return newTeam;
+}
+
+void editTeam (vector<team> &list, string name)
+{
+    string answer;
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (list[i].teamName == name)
+        {
+            cout << "Team found" << endl;
+            cout << "Would you like to delete or edit?" << list[i].teamName << endl;
+            cin >> answer;
+            if (answer == "edit")
+            {
+                while (true)
+                {
+                    cout << "What would you like to change?" << endl;
+                    cout << "(teamName/other)" << endl;
+                    cin >> answer;
+                    if (answer == "teamName")
+                    {
+                        cout << "What would you like the team name to be?" << endl;
+                        cin >> answer;
+                        list[i].teamName = answer;
+                        cout << "Team name changed to " << list[i].teamName << endl;
+                        break;
+                    }
+                    else if (answer == "other")
+                    {
+                        cout << "Still coding" << endl;
+                    }
+                    else
+                    {
+                        cout << "Invalid input, please try again" << endl;
+                    }
+                }
+            }
+            else if (answer == "delete")
+            {
+                cout << "Deleting " << list[i].teamName << endl;
+                list.erase(list.begin() + i);
+            }
+        }
+    }
 }
 
 void setMaxRank(vector<team> &list, int size)
@@ -334,7 +381,7 @@ int main(int argc, char* argv[])
     //Intro
     cout << "This program covers an official KWA basketball season" << endl;
     cout << "Enter your team names with '-' substituting for spaces" << endl;
-    cout << "When you are finished creating teams, type 'finished' to proceed" << endl;
+    cout << "When you are finished creating teams, type 'done' to proceed" << endl;
 
     int totalTeams = 0;
 
@@ -342,7 +389,7 @@ int main(int argc, char* argv[])
 
     string input;
     cin >> input;
-    while (input != "finished")
+    while (input != "done")
     {
         //Both lines below would work, depends on preference
         list.push_back({input, 0, 0, 0, 0, 0, 0}); 
@@ -357,6 +404,33 @@ int main(int argc, char* argv[])
     cout << "Here are all the entered teams:" << endl;
     printTeams(list);
 
+    while (true)
+    {
+        cout << "Would you like to make any changes to the teams? (yes/no)" << endl;
+        cout << "Type 'print' if you would like to see all teams" << endl;
+        //editTeams:
+        cin >> input;
+        if (input == "yes" || input == "Yes")
+        {
+            cout << "What team would you like to change?" << endl;
+            cin >> input;
+            editTeam(list, input);
+        }
+        else if (input == "no" || input == "No")
+        {
+            break;
+        }
+        else if (input == "print" || "Print")
+        {
+            printTeams(list);
+        }
+        else
+        {
+            cout << "Please enter again (yes/no)" << endl;
+            //goto editTeams;
+
+        }
+    }
 
     //Starting Season
         //How many rounds of matchups
@@ -383,18 +457,6 @@ int main(int argc, char* argv[])
     printRanks(list); //Print Standings
 
 
-
-    //Test if scores generated correctly
-        //generateScores(list);
-        //printScores(list);
-
-    //generateScores(head);
-    
-
-    //cout << " is the #1 seed" << endl;
-    //cout << " is the #2 seed" << endl;
-    //cout << " is the #3 seed" << endl;
-    //cout << " is the #4 seed" << endl;
     
     cout << "Get ready for the Tournament!" << endl;
 
