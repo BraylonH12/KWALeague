@@ -1,0 +1,66 @@
+Teams/Colleges 
+    Prestige (Reputation) 
+    Education 
+    Coaching (Player Development)
+    Campus Life 
+    Rival
+
+    Defensive Rating
+    Offensive Rating
+    Overall
+
+Panama City Pumas (1)
+    Prestige - 3.5 star
+    Education - 3.5 star
+    Coaching - 4 star
+    Campus Life - 5 star
+    Rival(s)
+
+Chicago Penguins (2)
+    Prestige - 3 star
+    Education - 4.5 star
+    Coaching - 4 star
+    Campus Life - 3.75 star
+    Rival(s) - Texas Titans
+
+Texas Titans (3)
+    Prestige - 5 star
+    Education - 4 star
+    Coaching - 5 star
+    Campus Life - 5 star
+    Rival(s) - Chicago Penguins
+
+Sacremento Samurai (4)
+    Prestige - 3.5 star
+    Education - 3 star
+    Coaching - 3 star
+    Campus Life - 4 star
+    Rival(s) - San Diego Geckos
+
+Des Moines Deer (5)
+    Prestige - 3 star
+    Education - 3 star
+    Coaching - 3 star
+    Campus Life - 3 star
+    Rival(s)
+
+Saco (Maine) Sharks (6)
+    Prestige - 4.5 star
+    Education - 5 star
+    Coaching - 4 star
+    Campus Life - 4 star
+    Rival(s) - New York Knights
+
+San Diego Geckos (7)
+    Prestige - 2.5 star
+    Education - 3.5 star
+    Coaching - 3 star
+    Campus Life - 3.5 star
+    Rival(s) - Sacremento Samurai
+
+New York Knights (8)
+    Prestige - 3 star
+    Education - 4 star
+    Coaching - 5 star
+    Campus Life - 4 star
+    Rival(s) - Saco Sharks
