@@ -448,30 +448,387 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
         {
             genOneScore(list, 2); //seed 3
             genOneScore(list, 13); //seed 14
-            if (list[7].score == list[8].score)
+            if (list[2].score == list[13].score)
             {
-                while (list[7].score == list[8].score)
+                while (list[2].score == list[13].score)
                 {
                     genOTScore(list, 2); 
                     genOTScore(list, 13); 
                 }
             }
-            if (list[7].score > list[8].score)
+            if (list[2].score > list[13].score)
             {
-                list[7].wins++;
-                list[8].loses++;
-                cout << "The " << list[7].location << " " << list[7].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[8].location << " " << list[8].teamName << "have been eliminated!" << endl;
-                eliteEight1.team2 = &list[7];
+                list[2].wins++;
+                list[13].loses++;
+                cout << "The " << list[2].location << " " << list[2].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[13].location << " " << list[13].teamName << "have been eliminated!" << endl;
+                eliteEight2.team1 = &list[2];
             }
             else //upset
             {
-                list[8].wins++;
-                list[7].loses++;
+                list[13].wins++;
+                list[2].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[8].location << " " << list[8].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[7].location << " " << list[7].teamName << "have been eliminated!" << endl;
-                eliteEight1.team2 = &list[8];
+                cout << "The " << list[13].location << " " << list[13].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[2].location << " " << list[2].teamName << "have been eliminated!" << endl;
+                eliteEight2.team1 = &list[13];
+            }
+        }
+
+        if (i == 3) //Game 7 (winner goes to Game 11)
+        {
+            genOneScore(list, 4); //seed 5
+            genOneScore(list, 11); //seed 12
+            if (list[4].score == list[11].score)
+            {
+                while (list[4].score == list[11].score)
+                {
+                    genOTScore(list, 4); 
+                    genOTScore(list, 11); 
+                }
+            }
+            if (list[4].score > list[11].score)
+            {
+                list[4].wins++;
+                list[11].loses++;
+                cout << "The " << list[4].location << " " << list[4].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[11].location << " " << list[11].teamName << "have been eliminated!" << endl;
+                eliteEight2.team2 = &list[4];
+            }
+            else //upset
+            {
+                list[11].wins++;
+                list[4].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[11].location << " " << list[11].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[4].location << " " << list[4].teamName << "have been eliminated!" << endl;
+                eliteEight2.team2 = &list[11];
+            }
+        }
+    
+        if (i == 4) //Game 2 (winner goes to Game 10)
+        {
+            genOneScore(list, 1); //seed 2
+            genOneScore(list, 14); //seed 15
+            if (list[1].score == list[14].score)
+            {
+                while (list[1].score == list[14].score)
+                {
+                    genOTScore(list, 1); 
+                    genOTScore(list, 14); 
+                }
+            }
+            if (list[1].score > list[14].score)
+            {
+                list[1].wins++;
+                list[14].loses++;
+                cout << "The " << list[1].location << " " << list[1].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[14].location << " " << list[14].teamName << "have been eliminated!" << endl;
+                eliteEight3.team1 = &list[1];
+            }
+            else //upset
+            {
+                list[14].wins++;
+                list[1].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[14].location << " " << list[14].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[1].location << " " << list[1].teamName << "have been eliminated!" << endl;
+                eliteEight3.team1 = &list[14];
+            }
+        }
+
+        if (i == 5) //Game 6 (winner goes to Game 10)
+        {
+            genOneScore(list, 6); //seed 7
+            genOneScore(list, 9); //seed 10
+            if (list[6].score == list[9].score)
+            {
+                while (list[6].score == list[9].score)
+                {
+                    genOTScore(list, 6); 
+                    genOTScore(list, 9); 
+                }
+            }
+            if (list[6].score > list[9].score)
+            {
+                list[6].wins++;
+                list[9].loses++;
+                cout << "The " << list[6].location << " " << list[6].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[9].location << " " << list[9].teamName << "have been eliminated!" << endl;
+                eliteEight3.team2 = &list[6];
+            }
+            else //upset
+            {
+                list[9].wins++;
+                list[6].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[9].location << " " << list[9].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[6].location << " " << list[6].teamName << "have been eliminated!" << endl;
+                eliteEight3.team2 = &list[14];
+            }
+        }
+
+        if (i == 6) //Game 4 (winner goes to Game 12)
+        {
+            genOneScore(list, 3); //seed 4
+            genOneScore(list, 12); //seed 13
+            if (list[3].score == list[12].score)
+            {
+                while (list[3].score == list[12].score)
+                {
+                    genOTScore(list, 3); 
+                    genOTScore(list, 12); 
+                }
+            }
+            if (list[3].score > list[12].score)
+            {
+                list[3].wins++;
+                list[12].loses++;
+                cout << "The " << list[3].location << " " << list[3].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[12].location << " " << list[12].teamName << "have been eliminated!" << endl;
+                eliteEight4.team1 = &list[3];
+            }
+            else //upset
+            {
+                list[12].wins++;
+                list[3].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[12].location << " " << list[12].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[3].location << " " << list[3].teamName << "have been eliminated!" << endl;
+                eliteEight4.team1 = &list[12];
+            }
+        }
+
+        if (i == 7) //Game 8 (winner goes to Game 12)
+        {
+            genOneScore(list, 5); //seed 6
+            genOneScore(list, 10); //seed 11
+            if (list[5].score == list[10].score)
+            {
+                while (list[5].score == list[10].score)
+                {
+                    genOTScore(list, 5); 
+                    genOTScore(list, 10); 
+                }
+            }
+            if (list[5].score > list[10].score)
+            {
+                list[5].wins++;
+                list[10].loses++;
+                cout << "The " << list[5].location << " " << list[5].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[10].location << " " << list[10].teamName << "have been eliminated!" << endl;
+                eliteEight4.team2 = &list[5];
+            }
+            else //upset
+            {
+                list[10].wins++;
+                list[5].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[10].location << " " << list[10].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[5].location << " " << list[5].teamName << "have been eliminated!" << endl;
+                eliteEight4.team2 = &list[10];
+            }
+        }
+
+        cout << "Time for the Elite 8!!" << endl;
+
+        if (i == 8) //Game 9 (winner goes to Game 13)
+        {
+            int index1; //team1
+            int index2; //team2
+            for (int j = 0; j < list.size(); j++) //Finding first team
+            {
+                if (eliteEight1.team1->teamName == list[j].teamName)
+                {
+                    index1 = j;
+                }
+            }
+            for (int j = 0; j < list.size(); j++)
+            {
+                if (eliteEight1.team2->teamName == list[j].teamName)
+                {
+                    index2 = j;
+                }
+            }
+            genOneScore(list, index1); //winner of Game 1
+            genOneScore(list, index2); //winner of Game 5
+            if (list[index1].score == list[index2].score)
+            {
+                while (list[index1].score == list[index2].score)
+                {
+                    genOTScore(list, index1); 
+                    genOTScore(list, index2); 
+                }
+            }
+            if (list[index1].score > list[index2].score)
+            {
+                list[index1].wins++;
+                list[index2].loses++;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                finalFour1.team1 = &list[index1];
+            }
+            else //upset
+            {
+                list[index2].wins++;
+                list[index1].loses++;
+                if (eliteEight1.team1->seed < eliteEight1.team2->seed)
+                {
+                    cout << "IT'S AN UPSET!!" << endl;
+                }
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                finalFour1.team1 = &list[index2];
+            }
+        }
+
+        if (i == 9) //Game 11 (winner goes to Game 13)
+        {
+            int index1; //team1
+            int index2; //team2
+            for (int j = 0; j < list.size(); j++) //Finding first team
+            {
+                if (eliteEight2.team1->teamName == list[j].teamName)
+                {
+                    index1 = j;
+                }
+            }
+            for (int j = 0; j < list.size(); j++)
+            {
+                if (eliteEight2.team2->teamName == list[j].teamName)
+                {
+                    index2 = j;
+                }
+            }
+            genOneScore(list, index1); //winner of Game 1
+            genOneScore(list, index2); //winner of Game 5
+            if (list[index1].score == list[index2].score)
+            {
+                while (list[index1].score == list[index2].score)
+                {
+                    genOTScore(list, index1); 
+                    genOTScore(list, index2); 
+                }
+            }
+            if (list[index1].score > list[index2].score)
+            {
+                list[index1].wins++;
+                list[index2].loses++;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                finalFour1.team2 = &list[index1];
+            }
+            else //upset
+            {
+                list[index2].wins++;
+                list[index1].loses++;
+                if (eliteEight2.team1->seed < eliteEight2.team2->seed)
+                {
+                    cout << "IT'S AN UPSET!!" << endl;
+                }
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                finalFour1.team2 = &list[index2];
+            }
+        }
+
+        if (i == 10) //Game 9 (winner goes to Game 13)
+        {
+            int index1; //team1
+            int index2; //team2
+            for (int j = 0; j < list.size(); j++) //Finding first team
+            {
+                if (eliteEight3.team1->teamName == list[j].teamName)
+                {
+                    index1 = j;
+                }
+            }
+            for (int j = 0; j < list.size(); j++)
+            {
+                if (eliteEight3.team2->teamName == list[j].teamName)
+                {
+                    index2 = j;
+                }
+            }
+            genOneScore(list, index1); //winner of Game 1
+            genOneScore(list, index2); //winner of Game 5
+            if (list[index1].score == list[index2].score)
+            {
+                while (list[index1].score == list[index2].score)
+                {
+                    genOTScore(list, index1); 
+                    genOTScore(list, index2); 
+                }
+            }
+            if (list[index1].score > list[index2].score)
+            {
+                list[index1].wins++;
+                list[index2].loses++;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                finalFour2.team1 = &list[index1];
+            }
+            else //upset
+            {
+                list[index2].wins++;
+                list[index1].loses++;
+                if (eliteEight3.team1->seed < eliteEight1.team2->seed)
+                {
+                    cout << "IT'S AN UPSET!!" << endl;
+                }
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                finalFour2.team1 = &list[index2];
+            }
+        }
+
+        if (i == 11) //Game 9 (winner goes to Game 13)
+        {
+            int index1; //team1
+            int index2; //team2
+            for (int j = 0; j < list.size(); j++) //Finding first team
+            {
+                if (eliteEight3.team1->teamName == list[j].teamName)
+                {
+                    index1 = j;
+                }
+            }
+            for (int j = 0; j < list.size(); j++)
+            {
+                if (eliteEight3.team2->teamName == list[j].teamName)
+                {
+                    index2 = j;
+                }
+            }
+            genOneScore(list, index1); //winner of Game 1
+            genOneScore(list, index2); //winner of Game 5
+            if (list[index1].score == list[index2].score)
+            {
+                while (list[index1].score == list[index2].score)
+                {
+                    genOTScore(list, index1); 
+                    genOTScore(list, index2); 
+                }
+            }
+            if (list[index1].score > list[index2].score)
+            {
+                list[index1].wins++;
+                list[index2].loses++;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                finalFour2.team1 = &list[index1];
+            }
+            else //upset
+            {
+                list[index2].wins++;
+                list[index1].loses++;
+                if (eliteEight3.team1->seed < eliteEight1.team2->seed)
+                {
+                    cout << "IT'S AN UPSET!!" << endl;
+                }
+                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                finalFour2.team1 = &list[index2];
             }
         }
 }
