@@ -1,5 +1,6 @@
 #include "kwaTeam.hpp"
 #include "kwaPlayer.hpp"
+#include "kwaRound.hpp"
 
 //Normal Include Statements
     #include <iostream>
@@ -13,7 +14,7 @@
 
     using namespace std;
 
-void editTeam (vector<team> &list, string name)
+void editTeam (vector<Team> &list, string name)
 {
     string answer;
     for (int i = 0; i < list.size(); i++)
@@ -21,43 +22,59 @@ void editTeam (vector<team> &list, string name)
         if (list[i].teamName == name)
         {
             cout << "Team found" << endl;
-            cout << "Would you like to delete or edit?" << list[i].teamName << endl;
-            cin >> answer;
-            if (answer == "edit")
+            while (1)
             {
-                while (true)
+                cout << "Would you like to delete or edit? (type 'cancel' to exit)" << list[i].teamName << endl;
+                cin >> answer;
+                if (answer == "edit")
                 {
-                    cout << "What would you like to change?" << endl;
-                    cout << "(teamName/other)" << endl;
-                    cin >> answer;
-                    if (answer == "teamName")
+                    while (true)
                     {
-                        cout << "What would you like the team name to be?" << endl;
+                        cout << "What would you like to change?" << endl;
+                        cout << "(teamName/other)" << endl;
                         cin >> answer;
-                        list[i].teamName = answer;
-                        cout << "Team name changed to " << list[i].teamName << endl;
-                        break;
-                    }
-                    else if (answer == "other")
-                    {
-                        cout << "Still coding" << endl;
-                    }
-                    else
-                    {
-                        cout << "Invalid input, please try again" << endl;
+                        if (answer == "teamName")
+                        {
+                            cout << "What would you like the team name to be?" << endl;
+                            cin >> answer;
+                            list[i].teamName = answer;
+                            cout << "Team name changed to " << list[i].teamName << endl;
+                            return;
+                        }
+                        else if (answer == "other")
+                        {
+                            cout << "Still coding" << endl;
+                            break;
+                        }
+                        else if (answer == "exit")
+                        {
+                            return;
+                        }
+                        
+                        else
+                        {
+                            cout << "Invalid input, please try again" << endl;
+                            continue;
+                        }
                     }
                 }
-            }
-            else if (answer == "delete")
-            {
-                cout << "Deleting " << list[i].teamName << endl;
-                list.erase(list.begin() + i);
+                else if (answer == "delete")
+                {
+                    cout << "Deleting " << list[i].teamName << endl;
+                    list.erase(list.begin() + i);
+                    break;
+                }
+                else
+                {
+                    cout << "Incorrect input" << endl;
+                    continue;
+                }
             }
         }
     }
 }
 
-void setMaxRank(vector<team> &list, int size)
+void setMaxRank(vector<Team> &list, int size)
 {
     for (int i = 0; i < list.size(); i++)
     {
@@ -65,7 +82,7 @@ void setMaxRank(vector<team> &list, int size)
     }
 }
 
-void setMatchupsFalse(vector<team> &list)
+void setMatchupsFalse(vector<Team> &list)
 {
     int it = 0;
     while (it < list.size())
@@ -99,7 +116,7 @@ void setMatchupsFalse(vector<team> &list)
     }
 }
 
-void calculateWinP(vector<team> &list) //I could modify this to inlcude all teams instead of just one (Yessir you got it!)
+void calculateWinP(vector<Team> &list) //I could modify this to inlcude all teams instead of just one (Yessir you got it!)
 { 
     //win percentage = wins / total games
     
@@ -123,7 +140,7 @@ void calculateWinP(vector<team> &list) //I could modify this to inlcude all team
     }
 }
 
-void printTeams(vector<team> list)
+void printTeams(vector<Team> list)
 {
     //alternate way (learned from dfs project)
     //while (i != list.end())
@@ -135,7 +152,7 @@ void printTeams(vector<team> list)
     }
 }
 
-void printScores(vector<team> list)
+void printScores(vector<Team> list)
 {
     for (int i = 0; i < list.size(); i++)
     {
@@ -143,7 +160,7 @@ void printScores(vector<team> list)
     }
 }
 
-void printRanks(vector<team> list)// You don't need '&' for this method
+void printRanks(vector<Team> list)// You don't need '&' for this method
 {
     int rank = 1;
     while (rank != list.size() + 1)
@@ -161,7 +178,7 @@ void printRanks(vector<team> list)// You don't need '&' for this method
     }
 }
 
-void genOneScore(vector<team> &list, int index) //for one team
+void genOneScore(vector<Team> &list, int index) //for one team
 { 
     int min = 75;
     int max = 120;
@@ -177,7 +194,7 @@ void genOneScore(vector<team> &list, int index) //for one team
 
 }
 
-void genOTScore(vector<team> &list, int index)
+void genOTScore(vector<Team> &list, int index)
 {
     int min = 0;
     int max = 15;
@@ -192,7 +209,7 @@ void genOTScore(vector<team> &list, int index)
     list[index].pTotal = list[index].pTotal + OTScore;
 }
 
-void generateAllScores(vector<team> &list) //all teams
+void generateAllScores(vector<Team> &list) //all teams (I don't really use this method - I use genOne Score instead)
 {
     //I want to have these scores depend on the rank and the seeding matchup
         //Should I have offensive and defensive ratings?
@@ -212,7 +229,7 @@ void generateAllScores(vector<team> &list) //all teams
     }
 }
 
-void createMatchups(vector<team> &list)
+void createMatchups(vector<Team> &list)
 {
     //Note
         //For the vector of bools
@@ -276,8 +293,7 @@ void createMatchups(vector<team> &list)
     }
 }
 
-
-void rankTeams(vector<team> &list)
+void rankTeams(vector<Team> &list)
 {
     //Could I set each teams seed to the max number of teams
     //  and then add or subtract 1 due to their placement 
@@ -322,4 +338,140 @@ void rankTeams(vector<team> &list)
             }
         }
     }
+}
+
+vector<Team> orderTeams(vector<Team> &list) //This method re-orders the vector in order of team ranks (makes it easier to write playoff method)
+{
+    vector<Team> newList;
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (list[i].seed == i++)
+        {
+            newList.push_back(list[i]);
+        }
+    }
+
+    return newList;
+}
+
+/*
+Team findSeed(int num, vector<Team> list)
+{
+    for (int j = 0; j < list.size(); j++)
+    {
+        if (list[j].seed == num)
+        {
+            return list[j];
+        }
+    }
+}
+*/
+
+//You probably have to call setMatchupsFalse() before starting playoffs (you could really call it in this method)
+void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
+{
+    //Assuming vector Round size is 16.
+    setMatchupsFalse(list);
+
+    Round eliteEight1;
+    Round eliteEight2;
+    Round eliteEight3;
+    Round eliteEight4;
+    Round finalFour1;
+    Round finalFour2;
+    Round natChampionship;
+
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (i == 0) //Game 1 (winner goes to Game 9)
+        {
+            genOneScore(list, 0); //seed 1
+            genOneScore(list, 15); //seed 16
+            if (list[0].score == list[15].score)
+            {
+                while (list[0].score == list[15].score)
+                {
+                    genOTScore(list, 0); //seed 1
+                    genOTScore(list, 15); //seed 16
+                }
+            }
+            if (list[0].score > list[15].score)
+            {
+                list[0].wins++;
+                list[15].loses++;
+                cout << "The " << list[0].location << " " << list[0].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[15].location << " " << list[15].teamName << "have been eliminated!" << endl;
+                eliteEight1.team1 = &list[0];
+            }
+            else
+            {
+                list[15].wins++;
+                list[0].loses++;
+                cout << "The " << list[15].location << " " << list[15].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[0].location << " " << list[0].teamName << "have been eliminated!" << endl;
+                eliteEight1.team1 = &list[15];
+            }
+        }
+
+        if (i == 1) //Game 5 (winner goes to Game 9)
+        {
+            genOneScore(list, 7); //seed 8
+            genOneScore(list, 8); //seed 9
+            if (list[7].score == list[8].score)
+            {
+                while (list[7].score == list[8].score)
+                {
+                    genOTScore(list, 7); 
+                    genOTScore(list, 8);
+                }
+            }
+            if (list[7].score > list[8].score)
+            {
+                list[7].wins++;
+                list[8].loses++;
+                cout << "The " << list[7].location << " " << list[7].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << "have been eliminated!" << endl;
+                eliteEight1.team2 = &list[7];
+            }
+            else //upset
+            {
+                list[8].wins++;
+                list[7].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[7].location << " " << list[7].teamName << "have been eliminated!" << endl;
+                eliteEight1.team2 = &list[8];
+            }
+        }
+
+        if (i == 2) //Game 3 (winner goes to Game 11)
+        {
+            genOneScore(list, 2); //seed 3
+            genOneScore(list, 13); //seed 14
+            if (list[7].score == list[8].score)
+            {
+                while (list[7].score == list[8].score)
+                {
+                    genOTScore(list, 2); 
+                    genOTScore(list, 13); 
+                }
+            }
+            if (list[7].score > list[8].score)
+            {
+                list[7].wins++;
+                list[8].loses++;
+                cout << "The " << list[7].location << " " << list[7].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << "have been eliminated!" << endl;
+                eliteEight1.team2 = &list[7];
+            }
+            else //upset
+            {
+                list[8].wins++;
+                list[7].loses++;
+                cout << "IT'S AN UPSET!!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << "move on to the Elite Eight!" << endl;
+                cout << "The " << list[7].location << " " << list[7].teamName << "have been eliminated!" << endl;
+                eliteEight1.team2 = &list[8];
+            }
+        }
 }
