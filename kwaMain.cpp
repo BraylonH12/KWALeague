@@ -36,23 +36,36 @@ int main(int argc, char* argv[])
     cout << "Enter your team names with '-' substituting for spaces" << endl;
     cout << "When you are finished creating teams, type 'done' to proceed" << endl;
 
+    int season = 0;
     int totalTeams = 0;
 
-    vector<team> list; 
+    vector<Team> list;
+
+    //Pre Built teams
+    // /*
+    list.push_back(buildTeam("Pumas", "Panama City", 3.5, 5)); //1
+    list.push_back(buildTeam("Penguins", "Chicago", 4.5, 3.75));
+    list.push_back(buildTeam("Titans", "Texas", 4, 5));
+    list.push_back(buildTeam("Samurai", "Sacremento", 3, 4));
+    list.push_back(buildTeam("Deer", "Des Moines", 3, 3)); //5
+    list.push_back(buildTeam("Sharks", "Saco", 5, 4));
+    list.push_back(buildTeam("Geckos", "San Diego", 3.5, 3.5));
+    list.push_back(buildTeam("Knights", "New York", 4, 4));
+    list.push_back(buildTeam("Manta Rays", "Kailua-Kona", 4, 4));
+    list.push_back(buildTeam("Red", "Providence", 4.5, 2)); //10
+
+    // */
 
     string input;
     cin >> input;
-    while (input != "done")
+    while (input != "done" && !input.empty()) //The ".empty()" prevents a null team from being created
     {
         //Both lines below would work, depends on preference
-        list.push_back({input, 0, 0, 0, 0, 0, 0}); 
-        //buildTeam(input);
+        //list.push_back({input, 0, 0, 0, 0, 0, 0}); 
+        list.push_back(buildTeam(input));
 
-        totalTeams++;
         cin >> input;
     }
-    setMaxRank(list, totalTeams);
-    setMatchupsFalse(list);
 
     cout << "Here are all the entered teams:" << endl;
     printTeams(list);
@@ -89,6 +102,9 @@ int main(int argc, char* argv[])
         //How many rounds of matchups
             //for loop of setMatchups False with generate matchups
 
+    setMaxRank(list, list.size()); //Sets the rank to the vector size (will be changed later)
+    //setMatchupsFalse(list); //Need to reset before each season
+
     cout << "The regular season will now begin" << endl;
 
     cout << "How many rounds would you like the season to have?" << endl;
@@ -112,6 +128,11 @@ int main(int argc, char* argv[])
 
     
     cout << "Get ready for the Tournament!" << endl;
+
+    list = orderTeams(list);
+    startPlayoffs(list);
+
+    cout << "Thank you for Playing!" << endl;
 
     return 0;
 }
