@@ -83,6 +83,28 @@ void editTeam (vector<Team> &list, string name)
     }
 }
 
+void printTeamInfo(string name, vector<Team> list)
+{
+    bool found = false;
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (list[i].teamName == name)
+        {
+            cout << "Printing Rating " << list[i].teamName << " information . . ." << endl;
+            cout << "Education Rating: " << list[i].education << endl;
+            //cout << "Coach Rating: " << list[i].coach->rating << endl; //Still working on this so it may not work (I need to build coaches for each team)
+            cout << "Campus Life Rating: " << list[i].campusLife << endl;
+            //cout << "Rivals: " << endl; //I still need to add this as an array for the teams
+            cout << "ChampionShips: " << list[i].championships << endl;
+            found = true;
+        }
+    }
+    if (found == false)
+    {
+        cout << "Incorrect team name or team not found" << endl << endl;
+    }
+}
+
 void setMaxRank(vector<Team> &list, int size)
 {
     for (int i = 0; i < list.size(); i++)
@@ -369,6 +391,16 @@ vector<Team> orderTeams(vector<Team> &list) //This method re-orders the vector i
     return newList;
 }
 
+void resetLeague(vector<Team> &list) //call before next season
+{
+    int size = list.size();
+    for (int i = 0; i < list.size(); i++)
+    {
+        list[i].wins = 0;
+        list[i].loses = 0;
+        list[i].seed = size;
+    }
+}
 //You probably have to call setMatchupsFalse() before starting playoffs (you could really call it in this method)
 void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
 {
