@@ -31,7 +31,7 @@ void editTeam (vector<Team> &list, string name)
                     while (true)
                     {
                         cout << "What would you like to change?" << endl;
-                        cout << "(teamName/other)" << endl;
+                        cout << "(teamName/city/other/exit)" << endl;
                         cin >> answer;
                         if (answer == "teamName")
                         {
@@ -41,10 +41,19 @@ void editTeam (vector<Team> &list, string name)
                             cout << "Team name changed to " << list[i].teamName << endl;
                             return;
                         }
+                        else if (answer == "city")
+                        {
+                            cout << "What would you like the team location to be?" << endl;
+                            cout << "Original Location: " << list[i].location << endl;
+                            cin >> answer;
+                            list[i].location = answer;
+                            cout << "Team location changed to " << list[i].location << endl;
+                            return;
+                        }
                         else if (answer == "other")
                         {
                             cout << "Still coding" << endl;
-                            break;
+                            return;
                         }
                         else if (answer == "exit")
                         {
@@ -374,8 +383,18 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
     Round finalFour2;
     Round natChampionship;
 
-    for (int i = 0; i < list.size(); i++)
+    string input;
+    bool finished = false;
+    int i = 0;
+
+    cout << "Press Enter to Continue" << endl; // int array = {1, 2, 4, 5}
+    getline(cin, input);
+    
+    while (finished == false)
     {
+        cout << "Press Enter to Continue" << endl;
+        getline(cin, input);
+
         if (i == 0) //Game 1 (winner goes to Game 9)
         {
             genOneScore(list, 0); //seed 1
@@ -392,16 +411,16 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[0].wins++;
                 list[15].loses++;
-                cout << "The " << list[0].location << " " << list[0].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[15].location << " " << list[15].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[0].location << " " << list[0].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[15].location << " " << list[15].teamName << " have been eliminated!" << endl;
                 eliteEight1.team1 = &list[0];
             }
             else
             {
                 list[15].wins++;
                 list[0].loses++;
-                cout << "The " << list[15].location << " " << list[15].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[0].location << " " << list[0].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[15].location << " " << list[15].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[0].location << " " << list[0].teamName << " have been eliminated!" << endl;
                 eliteEight1.team1 = &list[15];
             }
             cout << "Final Score: " << list[0].teamName << " (" << list[0].score << ") - " << list[15].teamName;
@@ -424,8 +443,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[7].wins++;
                 list[8].loses++;
-                cout << "The " << list[7].location << " " << list[7].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[8].location << " " << list[8].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[7].location << " " << list[7].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << " have been eliminated!" << endl;
                 eliteEight1.team2 = &list[7];
             }
             else //upset
@@ -433,8 +452,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[8].wins++;
                 list[7].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[8].location << " " << list[8].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[7].location << " " << list[7].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[8].location << " " << list[8].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[7].location << " " << list[7].teamName << " have been eliminated!" << endl;
                 eliteEight1.team2 = &list[8];
             }
             cout << "Final Score: " << list[7].teamName << " (" << list[7].score << ") - " << list[8].teamName;
@@ -457,8 +476,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[2].wins++;
                 list[13].loses++;
-                cout << "The " << list[2].location << " " << list[2].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[13].location << " " << list[13].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[2].location << " " << list[2].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[13].location << " " << list[13].teamName << " have been eliminated!" << endl;
                 eliteEight2.team1 = &list[2];
             }
             else //upset
@@ -466,8 +485,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[13].wins++;
                 list[2].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[13].location << " " << list[13].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[2].location << " " << list[2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[13].location << " " << list[13].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[2].location << " " << list[2].teamName << " have been eliminated!" << endl;
                 eliteEight2.team1 = &list[13];
             }
             cout << "Final Score: " << list[2].teamName << " (" << list[2].score << ") - " << list[13].teamName;
@@ -490,8 +509,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[4].wins++;
                 list[11].loses++;
-                cout << "The " << list[4].location << " " << list[4].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[11].location << " " << list[11].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[4].location << " " << list[4].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[11].location << " " << list[11].teamName << " have been eliminated!" << endl;
                 eliteEight2.team2 = &list[4];
             }
             else //upset
@@ -499,14 +518,14 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[11].wins++;
                 list[4].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[11].location << " " << list[11].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[4].location << " " << list[4].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[11].location << " " << list[11].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[4].location << " " << list[4].teamName << " have been eliminated!" << endl;
                 eliteEight2.team2 = &list[11];
             }
             cout << "Final Score: " << list[4].teamName << " (" << list[4].score << ") - " << list[11].teamName;
             cout << "(" << list[11].score << ")"<< endl;
         }
-    
+
         if (i == 4) //Game 2 (winner goes to Game 10)
         {
             genOneScore(list, 1); //seed 2
@@ -523,8 +542,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[1].wins++;
                 list[14].loses++;
-                cout << "The " << list[1].location << " " << list[1].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[14].location << " " << list[14].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[1].location << " " << list[1].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[14].location << " " << list[14].teamName << " have been eliminated!" << endl;
                 eliteEight3.team1 = &list[1];
             }
             else //upset
@@ -532,8 +551,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[14].wins++;
                 list[1].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[14].location << " " << list[14].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[1].location << " " << list[1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[14].location << " " << list[14].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[1].location << " " << list[1].teamName << " have been eliminated!" << endl;
                 eliteEight3.team1 = &list[14];
             }
             cout << "Final Score: " << list[1].teamName << " (" << list[1].score << ") - " << list[14].teamName;
@@ -556,8 +575,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[6].wins++;
                 list[9].loses++;
-                cout << "The " << list[6].location << " " << list[6].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[9].location << " " << list[9].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[6].location << " " << list[6].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[9].location << " " << list[9].teamName << " have been eliminated!" << endl;
                 eliteEight3.team2 = &list[6];
             }
             else //upset
@@ -565,8 +584,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[9].wins++;
                 list[6].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[9].location << " " << list[9].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[6].location << " " << list[6].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[9].location << " " << list[9].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[6].location << " " << list[6].teamName << " have been eliminated!" << endl;
                 eliteEight3.team2 = &list[14];
             }
             cout << "Final Score: " << list[6].teamName << " (" << list[6].score << ") - " << list[9].teamName;
@@ -589,8 +608,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[3].wins++;
                 list[12].loses++;
-                cout << "The " << list[3].location << " " << list[3].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[12].location << " " << list[12].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[3].location << " " << list[3].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[12].location << " " << list[12].teamName << " have been eliminated!" << endl;
                 eliteEight4.team1 = &list[3];
             }
             else //upset
@@ -598,8 +617,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[12].wins++;
                 list[3].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[12].location << " " << list[12].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[3].location << " " << list[3].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[12].location << " " << list[12].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[3].location << " " << list[3].teamName << " have been eliminated!" << endl;
                 eliteEight4.team1 = &list[12];
             }
             cout << "Final Score: " << list[3].teamName << " (" << list[3].score << ") - " << list[12].teamName;
@@ -622,8 +641,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[5].wins++;
                 list[10].loses++;
-                cout << "The " << list[5].location << " " << list[5].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[10].location << " " << list[10].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[5].location << " " << list[5].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[10].location << " " << list[10].teamName << " have been eliminated!" << endl;
                 eliteEight4.team2 = &list[5];
             }
             else //upset
@@ -631,18 +650,17 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[10].wins++;
                 list[5].loses++;
                 cout << "IT'S AN UPSET!!" << endl;
-                cout << "The " << list[10].location << " " << list[10].teamName << "move on to the Elite Eight!" << endl;
-                cout << "The " << list[5].location << " " << list[5].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[10].location << " " << list[10].teamName << " move on to the Elite Eight!" << endl;
+                cout << "The " << list[5].location << " " << list[5].teamName << " have been eliminated!" << endl;
                 eliteEight4.team2 = &list[10];
             }
             cout << "Final Score: " << list[5].teamName << " (" << list[5].score << ") - " << list[10].teamName;
             cout << "(" << list[10].score << ")"<< endl;
         }
 
-        cout << "Time for the Elite 8!!" << endl;
-
         if (i == 8) //Game 9 (winner goes to Game 13)
         {
+            cout << "Time for the Elite 8!!" << endl;
             int index1; //team1
             int index2; //team2
             for (int j = 0; j < list.size(); j++) //Finding first team
@@ -673,8 +691,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 finalFour1.team1 = &list[index1];
             }
             else //upset
@@ -685,8 +703,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 finalFour1.team1 = &list[index2];
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
@@ -725,8 +743,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 finalFour1.team2 = &list[index1];
             }
             else //upset
@@ -737,8 +755,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 finalFour1.team2 = &list[index2];
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
@@ -777,8 +795,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 finalFour2.team1 = &list[index1];
             }
             else //upset
@@ -789,10 +807,12 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 finalFour2.team1 = &list[index2];
             }
+            cout << "Final Score: " << list[1].teamName << " (" << list[1].score << ") - " << list[14].teamName;
+            cout << "(" << list[14].score << ")"<< endl;
         }
 
         if (i == 11) //Game 12 (winner goes to Game 14)
@@ -827,8 +847,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 finalFour2.team2 = &list[index1];
             }
             else //upset
@@ -839,8 +859,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 finalFour2.team2 = &list[index2];
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
@@ -879,8 +899,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the National Championship!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 natChampionship.team1 = &list[index1];
             }
             else //upset
@@ -891,8 +911,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the Final Four!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 natChampionship.team1 = &list[index2];
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
@@ -931,8 +951,8 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             {
                 list[index1].wins++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " move on to the National Championship!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " have been eliminated!" << endl;
                 natChampionship.team2 = &list[index1];
             }
             else //upset
@@ -943,18 +963,19 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "move on to the Final Four!" << endl;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "have been eliminated!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " move on to the National Championship!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " have been eliminated!" << endl;
                 natChampionship.team2 = &list[index2];
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
             cout << "(" << list[index2].score << ")"<< endl;
         }
 
-        cout << "IT'S TIME FOR THE NATIONAL CHAMPIONSHIP!!" << endl;
-
         if (i == 14) //National Championship
         {
+            cout << "IT'S TIME FOR THE NATIONAL CHAMPIONSHIP!!" << endl;
+            cout << "Press Enter to Continue" << endl;
+            getline(cin, input);
             int index1; //team1
             int index2; //team2
             for (int j = 0; j < list.size(); j++) //Finding first team
@@ -986,7 +1007,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 list[index1].wins++;
                 list[index1].championships = list[index1].championships++;
                 list[index2].loses++;
-                cout << "The " << list[index1].location << " " << list[index1].teamName << "are the KWA National Champions!" << endl;
+                cout << "The " << list[index1].location << " " << list[index1].teamName << " are the KWA National Champions!" << endl;
             }
             else //upset
             {
@@ -997,11 +1018,12 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                 {
                     cout << "IT'S AN UPSET!!" << endl;
                 }
-                cout << "The " << list[index2].location << " " << list[index2].teamName << "are the KWA National Champions!" << endl;
+                cout << "The " << list[index2].location << " " << list[index2].teamName << " are the KWA National Champions!" << endl;
             }
             cout << "Final Score: " << list[index1].teamName << " (" << list[index1].score << ") - " << list[index2].teamName;
             cout << "(" << list[index2].score << ")"<< endl;
+            finished = true;
         }
-
+        i++;
     }
 }
