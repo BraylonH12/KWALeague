@@ -41,19 +41,24 @@ int main(int argc, char* argv[])
 
     vector<Team> list;
 
-    //Pre Built teams
+    //Pre Built teams (16)
     // /*
-    list.push_back(buildTeam("Pumas", "Panama City", 3.5, 5)); //1
-    list.push_back(buildTeam("Penguins", "Chicago", 4.5, 3.75));
-    list.push_back(buildTeam("Titans", "Texas", 4, 5));
-    list.push_back(buildTeam("Samurai", "Sacremento", 3, 4));
-    list.push_back(buildTeam("Deer", "Des Moines", 3, 3)); //5
-    list.push_back(buildTeam("Sharks", "Saco", 5, 4));
-    list.push_back(buildTeam("Geckos", "San Diego", 3.5, 3.5));
-    list.push_back(buildTeam("Knights", "New York", 4, 4));
-    list.push_back(buildTeam("Manta Rays", "Kailua-Kona", 4, 4));
-    list.push_back(buildTeam("Red", "Providence", 4.5, 2)); //10
-
+    list.push_back(buildTeam("Pumas", "Panama City", 3.5, 3.5, 4, 5)); //1
+    list.push_back(buildTeam("Penguins", "Chicago", 3, 4.5, 4, 3.75));
+    list.push_back(buildTeam("Titans", "Texas", 5, 4, 5, 5));
+    list.push_back(buildTeam("Samurai", "Sacremento", 3.5, 3, 3, 4));
+    list.push_back(buildTeam("Deer", "Des Moines", 3, 3, 3, 3)); //5
+    list.push_back(buildTeam("Sharks", "Saco", 4.5, 5, 4, 4));
+    list.push_back(buildTeam("Geckos", "San Diego", 2.5, 3.5, 3, 3.5));
+    list.push_back(buildTeam("Knights", "New York", 3, 4, 5, 4));
+    list.push_back(buildTeam("Manta Rays", "Kailua-Kona", 2, 4, 3.5, 4));
+    list.push_back(buildTeam("Red", "Providence", 1, 4.5, 4, 2)); //10
+    list.push_back(buildTeam("Koalas", "Cancun", 3, 4, 3.75, 5)); 
+    list.push_back(buildTeam("Tarantulas", "Tulsa", 1, 3, 5, 3.5)); 
+    list.push_back(buildTeam("Leopards", "Lincoln", 4, 4.5, 4, 4)); 
+    list.push_back(buildTeam("Axolotls", "New Mexico", 2, 3.5, 3, 5));
+    list.push_back(buildTeam("Lynx", "Las Vegas", 3.25, 4.5, 4, 5)); //15
+    list.push_back(buildTeam("Krane", "Knoxville", 3.75, 4, 3.5, 4));
     // */
 
     string input;
@@ -107,31 +112,91 @@ int main(int argc, char* argv[])
 
     cout << "The regular season will now begin" << endl;
 
-    cout << "How many rounds would you like the season to have?" << endl;
-    cout << "In a round, a team will play every other team once." << endl;
+    cout << "How many rounds would you like the season to have? (you will not be able to change this later)" << endl;
+    cout << "In a round, a team will play every other team once." << endl << endl << endl;
 
     int rounds;
     cin >> rounds;
 
+    int numSeason = 1;
 
-    for (int i = 0; i < rounds; i++)
+    //Coach gameplay option
+    while (input != "exit")
     {
-        setMatchupsFalse(list);
-        createMatchups(list); //Create games 
+        cout << "For every round you can review the Standings and/or review Team information by entering 'review' " << endl;
+        cout << "At any time enter 'exit' to leave the game" << endl;
+        cout << "Starting season " << numSeason << " . . ." << endl;
+
+        bool reviewStats = true;
+        for (int i = 0; i < rounds; i++)
+        {
+            cout << "Round " << i + 1 << " of Regular Season." << endl;
+            setMatchupsFalse(list);
+            createMatchups(list); //Create games
+            reviewStats = true;
+            while (reviewStats == true)
+            {
+                cout << "Review Standings or Team Info? (yes/no)" << endl;
+                cin >> input;
+                if (input == "yes" || input == "YES" || input == "Yes")
+                {
+                    cout << "What information would you like to view (Standings/Team)?  ('back' to override)" << endl;
+                    cin >> input;
+                    if (input == "Standings" || input == "standings")
+                    {
+                        calculateWinP(list); //must call this before generating ranks
+                        rankTeams(list); //Gives teams a rank
+                        printRanks(list); //Print Standings
+                        setMaxRank(list, list.size());
+                            //reset the ranks after this to prevent future tie issues
+                                //I'm going to make a points against variable, will help with ranking issues
+                    }
+                    else if (input == "Team" || input == "team")
+                    {
+                        cout << "What team would you like to view" << endl;
+                        cin >> input;
+                        printTeamInfo(input, list);
+                        continue;
+                    }
+                    else if (input == "back")
+                    {
+                        continue;
+                    }
+                }
+                else if (input == "no" || input == "NO" || input == "No")
+                {
+                    reviewStats = false;
+                    break;
+                }
+                else if (input == "exit")
+                {
+                    return 0;
+                }
+                else
+                {
+                    cout << "Invalid input, please try again" << endl;
+                }
+            }
+        }
+
+
+        calculateWinP(list); //must call this before generating ranks
+        rankTeams(list); //Gives teams a rank
+        printRanks(list); //Print Standings
+
+
+        
+        cout << "Get ready for the Tournament!" << endl;
+
+        list = orderTeams(list);
+        startPlayoffs(list);
+
+        cout << "That concludes Season " << numSeason << endl << endl;
+        numSeason++;
+
+        //Reseting for next season
+        resetLeague(list);
     }
-
-
-    calculateWinP(list); //must call this before generating ranks
-    rankTeams(list); //Gives teams a rank
-    printRanks(list); //Print Standings
-
-
-    
-    cout << "Get ready for the Tournament!" << endl;
-
-    list = orderTeams(list);
-    startPlayoffs(list);
-
     cout << "Thank you for Playing!" << endl;
 
     return 0;
