@@ -1,0 +1,3 @@
+Coach Ideas
+- A coach can improve players ratings
+- A coach can call a pracitce method and a team bonding method that raises player stats
