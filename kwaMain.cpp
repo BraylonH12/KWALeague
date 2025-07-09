@@ -41,24 +41,47 @@ int main(int argc, char* argv[])
 
     vector<Team> list;
 
+    //Coaches
+    vector<Coach> coachList;
+    coachList.push_back(buildCoach("Dave Jones", 4));
+    coachList.push_back(buildCoach("Little J.J.", 4));
+    coachList.push_back(buildCoach("Terry Phenom", 5));
+    coachList.push_back(buildCoach("Greg James", 3));
+    coachList.push_back(buildCoach("Stephen Johnson", 3));
+
+    coachList.push_back(buildCoach("Harold Lee", 4));
+    coachList.push_back(buildCoach("Juan Boulevardez", 3));
+    coachList.push_back(buildCoach("Kai Jerome", 5));
+    coachList.push_back(buildCoach("Kaiua Tonnes", 3.5));
+    coachList.push_back(buildCoach("Jeremy Dancer", 4));
+
+    coachList.push_back(buildCoach("Luke Walker", 3.75));
+    coachList.push_back(buildCoach("Tony Tamir", 5));
+    coachList.push_back(buildCoach("Lester James", 4));
+    coachList.push_back(buildCoach("Greg Smith", 3));
+    coachList.push_back(buildCoach("Olz Kenshin", 4));
+    coachList.push_back(buildCoach("Kawhi Ball", 4));
+
+
+
     //Pre Built teams (16)
     // /*
-    list.push_back(buildTeam("Pumas", "Panama City", 3.5, 3.5, 4, 5)); //1
-    list.push_back(buildTeam("Penguins", "Chicago", 3, 4.5, 4, 3.75));
-    list.push_back(buildTeam("Titans", "Texas", 5, 4, 5, 5));
-    list.push_back(buildTeam("Samurai", "Sacremento", 3.5, 3, 3, 4));
-    list.push_back(buildTeam("Deer", "Des Moines", 3, 3, 3, 3)); //5
-    list.push_back(buildTeam("Sharks", "Saco", 4.5, 5, 4, 4));
-    list.push_back(buildTeam("Geckos", "San Diego", 2.5, 3.5, 3, 3.5));
-    list.push_back(buildTeam("Knights", "New York", 3, 4, 5, 4));
-    list.push_back(buildTeam("Manta Rays", "Kailua-Kona", 2, 4, 3.5, 4));
-    list.push_back(buildTeam("Red", "Providence", 1, 4.5, 4, 2)); //10
-    list.push_back(buildTeam("Koalas", "Cancun", 3, 4, 3.75, 5)); 
-    list.push_back(buildTeam("Tarantulas", "Tulsa", 1, 3, 5, 3.5)); 
-    list.push_back(buildTeam("Leopards", "Lincoln", 4, 4.5, 4, 4)); 
-    list.push_back(buildTeam("Axolotls", "New Mexico", 2, 3.5, 3, 5));
-    list.push_back(buildTeam("Lynx", "Las Vegas", 3.25, 4.5, 4, 5)); //15
-    list.push_back(buildTeam("Krane", "Knoxville", 3.75, 4, 3.5, 4));
+    list.push_back(buildTeam("Pumas", "Panama City", 3.5, 3.5, &coachList[0], 5)); //1
+    list.push_back(buildTeam("Penguins", "Chicago", 3, 4.5, &coachList[1], 3.75));
+    list.push_back(buildTeam("Titans", "Texas", 5, 4, &coachList[2], 5));
+    list.push_back(buildTeam("Samurai", "Sacremento", 3.5, 3, &coachList[3], 4));
+    list.push_back(buildTeam("Deer", "Des Moines", 3, 3, &coachList[4], 3)); //5
+    list.push_back(buildTeam("Sharks", "Saco", 4.5, 5, &coachList[5], 4));
+    list.push_back(buildTeam("Geckos", "San Diego", 2.5, 3.5, &coachList[6], 3.5));
+    list.push_back(buildTeam("Knights", "New York", 3, 4, &coachList[7], 4));
+    list.push_back(buildTeam("Manta Rays", "Kailua-Kona", 2, 4, &coachList[8], 4));
+    list.push_back(buildTeam("Red", "Providence", 1, 4.5, &coachList[9], 2)); //10
+    list.push_back(buildTeam("Koalas", "Cancun", 3, 4, &coachList[10], 5)); 
+    list.push_back(buildTeam("Tarantulas", "Tulsa", 1, 3, &coachList[11], 3.5)); 
+    list.push_back(buildTeam("Leopards", "Lincoln", 4, 4.5, &coachList[12], 4)); 
+    list.push_back(buildTeam("Axolotls", "New Mexico", 2, 3.5, &coachList[13], 5));
+    list.push_back(buildTeam("Lynx", "Las Vegas", 3.25, 4.5, &coachList[14], 5)); //15
+    list.push_back(buildTeam("Krane", "Knoxville", 3.75, 4, &coachList[15], 4));
     // */
 
     string input;
@@ -83,9 +106,20 @@ int main(int argc, char* argv[])
         cin >> input;
         if (input == "yes" || input == "Yes")
         {
-            cout << "What team would you like to change?" << endl;
+            cout << "Would you like to add or edit/delete teams?" << endl;
             cin >> input;
-            editTeam(list, input);
+            if (input == "add")
+            {
+                cout << "What would you like the team name to be?" << endl;
+                cin >> input;
+                list.push_back(buildTeam(input));
+            }
+            else if (input == "delete" || input == "edit")
+            {
+                cout << "What team would you like to change?" << endl;
+                cin >> input;
+                editTeam(list, input);
+            }
         }
         else if (input == "no" || input == "No")
         {
@@ -94,6 +128,11 @@ int main(int argc, char* argv[])
         else if (input == "print" || "Print")
         {
             printTeams(list);
+        }
+        else if (input == "exit")
+        {
+            cout << "Thank you for Playing!" << endl;
+            return 0;
         }
         else
         {
@@ -170,6 +209,7 @@ int main(int argc, char* argv[])
                 }
                 else if (input == "exit")
                 {
+                    cout << "Thank you for Playing!" << endl;
                     return 0;
                 }
                 else
@@ -179,12 +219,11 @@ int main(int argc, char* argv[])
             }
         }
 
-
         calculateWinP(list); //must call this before generating ranks
         rankTeams(list); //Gives teams a rank
         printRanks(list); //Print Standings
 
-
+        cout << "That concludes the Regular Season." << endl;
         
         cout << "Get ready for the Tournament!" << endl;
 
@@ -193,6 +232,10 @@ int main(int argc, char* argv[])
 
         cout << "That concludes Season " << numSeason << endl << endl;
         numSeason++;
+
+        cout << "Enter anyting to continue" << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> input;
 
         //Reseting for next season
         resetLeague(list);
