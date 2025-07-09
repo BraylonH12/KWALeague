@@ -1,3 +1,13 @@
+Gameplay Options
+    - Coach
+        - You are a coach of a choice school (or create your own)
+        - Your tasked to draft players, increase ratings, and build your schools prestige
+    - Player
+        - You are a Freshman choosing a school with dreams of becoming a college basketball player
+            - You have 4 years to raise your draft projections
+
+
+
 Ideas
 
 
@@ -26,6 +36,19 @@ Quality
     - Option to enter teams/players based on either:
         Input
         File(s)
+
+Ratings 
+- Influence of Team Rating
+    - Record (losing)
+        - Better players will want a higher win percentage
+        - If it doesn't meet their wants they will try to transfer*
+- Influence of Player Rating 
+    - Better coaching can increase player ratings
+    - A bad game can decrease a player ratings
+        - Better players will be decreased for games under a certain amount of points
+        - Worse players will be increased for games over a certain amount of points
+
+Transfer Portal*
 
 *Home Court Advantage
 
