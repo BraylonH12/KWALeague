@@ -12,55 +12,112 @@ Teams/Colleges
 Panama City Pumas (1)
     Prestige - 3.5 star
     Education - 3.5 star
-    Coaching - 4 star
+    Coach(Dave Jones) - 4 star
     Campus Life - 5 star
-    Rival(s)
+    Rival(s) - Kailua-Kona Manta Rays 
 
 Chicago Penguins (2)
     Prestige - 3 star
     Education - 4.5 star
-    Coaching - 4 star
+    Coach(Little J.J.) - 4 star
     Campus Life - 3.75 star
     Rival(s) - Texas Titans
 
 Texas Titans (3)
     Prestige - 5 star
     Education - 4 star
-    Coaching - 5 star
+    Coach(Terry Phenom) - 5 star
     Campus Life - 5 star
     Rival(s) - Chicago Penguins
 
 Sacremento Samurai (4)
     Prestige - 3.5 star
     Education - 3 star
-    Coaching - 3 star
+    Coach(Greg James) - 3 star
     Campus Life - 4 star
     Rival(s) - San Diego Geckos
 
 Des Moines Deer (5)
     Prestige - 3 star
     Education - 3 star
-    Coaching - 3 star
+    Coach(Stephen Johnson) - 3 star
     Campus Life - 3 star
     Rival(s)
 
 Saco (Maine) Sharks (6)
     Prestige - 4.5 star
     Education - 5 star
-    Coaching - 4 star
+    Coach(Harold Lee) - 4 star
     Campus Life - 4 star
     Rival(s) - New York Knights
 
 San Diego Geckos (7)
     Prestige - 2.5 star
     Education - 3.5 star
-    Coaching - 3 star
+    Coach(Juan Boulevardez)- 3 star
     Campus Life - 3.5 star
     Rival(s) - Sacremento Samurai
 
 New York Knights (8)
     Prestige - 3 star
     Education - 4 star
-    Coaching - 5 star
+    Coach(Kai Jerome) - 5 star
     Campus Life - 4 star
     Rival(s) - Saco Sharks
+
+Kailua-Kona Manta Rays (9)
+    Prestige - 2 star
+    Education - 4 star
+    Coach(Kaiua Tonnes) - 3.5 star
+    Campus Life - 4 star
+    Rival(s) - Panama City Pumas
+
+Providence Red(Rooster) (10)
+    Prestige - 1 star
+    Education - 4.5 star
+    Coach(Jeremy Dancer) - 4 star
+    Campus Life - 2 star
+    Rival(s) - New York Knights
+
+Cancun Koalas (11)
+    Prestige - 3 star
+    Education - 4 star
+    Coach(Luke Walker) - 3.75 star
+    Campus Life - 5 star
+    Rival(s) - 
+
+Tulsa Tarantulas (12)
+    Prestige - 1 star
+    Education - 3 star
+    Coach(Tony Tamir) - 5 star
+    Campus Life - 3.5 star
+    Rival(s) -
+
+Lincoln Leopards (13)
+    Prestige - 4 star
+    Education - 4.5 star
+    Coach(Lester James) - 4 star
+    Campus Life - 4 star
+    Rival(s) -
+
+New Mexico Axolotls (14)
+    Prestige - 2 star
+    Education - 3.5 star
+    Coach(Greg Smith) - 3 star
+    Campus Life - 5 star
+    Rival(s) -
+
+Las Vegas Lynx (15)
+    Prestige - 3.25 star
+    Education - 4.5 star
+    Coach(Olz Kenshin) - 4 star
+    Campus Life - 5 star
+    Rival(s) -
+
+Knoxville Krane (16)
+    Prestige - 3.75 star
+    Education - 4 star
+    Coach(Kawhi Ball) - 3.5 star
+    Campus Life - 4 star
+    Rival(s) -
+
