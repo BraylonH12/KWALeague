@@ -24,7 +24,7 @@ void editTeam (vector<Team> &list, string name)
             cout << "Team found" << endl;
             while (1)
             {
-                cout << "Would you like to delete or edit? (type 'cancel' to exit)" << list[i].teamName << endl;
+                cout << "Would you like delete or edit? (type 'cancel' to exit)" << list[i].teamName << endl;
                 cin >> answer;
                 if (answer == "edit")
                 {
@@ -59,7 +59,6 @@ void editTeam (vector<Team> &list, string name)
                         {
                             return;
                         }
-                        
                         else
                         {
                             cout << "Invalid input, please try again" << endl;
@@ -92,7 +91,7 @@ void printTeamInfo(string name, vector<Team> list)
         {
             cout << "Printing Rating " << list[i].teamName << " information . . ." << endl;
             cout << "Education Rating: " << list[i].education << endl;
-            //cout << "Coach Rating: " << list[i].coach->rating << endl; //Still working on this so it may not work (I need to build coaches for each team)
+            cout << "Coach Rating: " << list[i].coach->rating << endl; //Still working on this so it may not work (I need to build coaches for each team)
             cout << "Campus Life Rating: " << list[i].campusLife << endl;
             //cout << "Rivals: " << endl; //I still need to add this as an array for the teams
             cout << "ChampionShips: " << list[i].championships << endl;
@@ -399,6 +398,8 @@ void resetLeague(vector<Team> &list) //call before next season
         list[i].wins = 0;
         list[i].loses = 0;
         list[i].seed = size;
+        list[i].pTotal = 0;
+        list[i].pAgainst = 0;
     }
 }
 //You probably have to call setMatchupsFalse() before starting playoffs (you could really call it in this method)
@@ -419,12 +420,13 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
     bool finished = false;
     int i = 0;
 
-    cout << "Press Enter to Continue" << endl; // int array = {1, 2, 4, 5}
-    getline(cin, input);
+    //cout << "Press Enter to Continue" << endl; // int array = {1, 2, 4, 5}
+    //getline(cin, input);
     
     while (finished == false)
     {
         cout << "Press Enter to Continue" << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clears input buffer (suggested by GitHub Copilot)
         getline(cin, input);
 
         if (i == 0) //Game 1 (winner goes to Game 9)
@@ -771,6 +773,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                     genOTScore(list, index2); 
                 }
             }
+
             if (list[index1].score > list[index2].score)
             {
                 list[index1].wins++;
@@ -799,6 +802,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
         {
             int index1; //team1
             int index2; //team2
+
             for (int j = 0; j < list.size(); j++) //Finding first team
             {
                 if (eliteEight3.team1->teamName == list[j].teamName)
@@ -806,6 +810,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                     index1 = j;
                 }
             }
+
             for (int j = 0; j < list.size(); j++)
             {
                 if (eliteEight3.team2->teamName == list[j].teamName)
@@ -813,8 +818,10 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                     index2 = j;
                 }
             }
+
             genOneScore(list, index1); //winner of Game 1
             genOneScore(list, index2); //winner of Game 5
+
             if (list[index1].score == list[index2].score)
             {
                 while (list[index1].score == list[index2].score)
@@ -823,6 +830,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
                     genOTScore(list, index2); 
                 }
             }
+
             if (list[index1].score > list[index2].score)
             {
                 list[index1].wins++;
@@ -1037,14 +1045,14 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             if (list[index1].score > list[index2].score)
             {
                 list[index1].wins++;
-                list[index1].championships = list[index1].championships++;
+                list[index1].championships = list[index1].championships + 1;
                 list[index2].loses++;
                 cout << "The " << list[index1].location << " " << list[index1].teamName << " are the KWA National Champions!" << endl;
             }
             else //upset
             {
                 list[index2].wins++;
-                list[index2].championships = list[index2].championships++;
+                list[index2].championships = list[index2].championships + 1;
                 list[index1].loses++;
                 if (natChampionship.team1->seed < natChampionship.team2->seed)
                 {
@@ -1056,6 +1064,7 @@ void startPlayoffs(vector<Team> &list) //The round vector should be the size 16
             cout << "(" << list[index2].score << ")"<< endl;
             finished = true;
         }
+        
         i++;
     }
 }
