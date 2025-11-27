@@ -31,6 +31,8 @@ struct Player
     int passing; // For assists
     int defense; //For steals/blocks
 
+    //These factors can contribute to a teams offensive/defensive rating
+
 //Stats
     //Offense
     int points;

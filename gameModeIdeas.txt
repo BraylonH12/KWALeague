@@ -1,0 +1,40 @@
+//Beginning
+
+    //Choose Team At Start
+        //choose from existing
+        //create own
+
+    //Coach custimization
+        // Give the user certain skill points
+            //They spend skill points based on different ratings
+        // OR
+        // Give coach archetypes
+
+        // Choose name
+
+//Game Loop
+        //Draft 5 players
+
+    //Each Round
+        //Players overalls and skills will be considered each Game
+            //Will influence point total
+        //After each round, the coach can decide to sub out players
+            //Unsure how I would implement CPU coaches
+                //based on win percentage and current posistion in standings
+
+    // For adding difficulty
+        //Injury
+            //Can make this a boolean or an integer
+                //Prevents a player for contributing to Starting LineUp 1 round
+        //Boosts
+            //Given to the user for winning an award (championship, best offense, best defense, etc)
+            //Results in a 'injury heal', skill point, extra trade request, or other boost
+
+    //Trading
+        // User is given 2 trade request per season
+            //CPU accepts or rejects based on
+                //overall, chance
+        //Trades must be for equal amount of players
+
+    //Player Generator
+        // Could I make a dictionary for player names?  
