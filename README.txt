@@ -88,3 +88,27 @@ Round 3
 National Championship (Round 4)
     Game 15
         (Winner of Game 13 vs Winner of Game 14)
+
+
+As of 3/16/26, most wanted updates:
+    (1) Front End updates (Difficult 7/10)
+        - Display an actual bracket in the front end
+        - allow the user to click through each Round
+    (2) Player updates (Difficulty 6/10)
+        - Add a draft where the user must choose players on the team
+            - pull from a random name library
+            - Ability to trade players before 2nd to last round each season
+    (3) Better game simulation (Difficulty 8/10)
+        - Generate points based off team and player ratings
+        - Rivalry games will have less of a point differential on average
+    (4) General Ideas
+        - Stadium pulse update
+            - help raise home team ratings and lower away teams ratings
+
+
+(2) Player Update - Framework
+    Steps
+        - Add a Player.hpp File (already exists)
+            - Include random name generator library
+                - currently I am creating a text file with a full name for each line
+                    - I wil store these in a vector<string> and pull a random index from there

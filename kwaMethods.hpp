@@ -11,8 +11,26 @@
     #include <math.h>
     #include <random>
     #include <chrono>
+    #include <fstream>
 
     using namespace std;
+
+vector<string> readNameFile(string filename)
+{
+    fstream nameFile(filename);
+
+    string currentName;
+
+    vector<string> nameList;
+
+    while (getline(nameFile, currentName))
+    {
+        nameList.push_back(currentName);
+    }
+
+    return nameList;
+
+}
 
 void editTeam (vector<Team> &list, string name)
 {
@@ -114,6 +132,7 @@ void setMaxRank(vector<Team> &list, int size)
 
 void setMatchupsFalse(vector<Team> &list)
 {
+    /*
     int it = 0;
     while (it < list.size())
     {
@@ -143,6 +162,14 @@ void setMatchupsFalse(vector<Team> &list)
             }
         }
         it++;
+    }
+    */
+
+    //Fixed code from GitHub Copilot
+    for (size_t it = 0; it < list.size(); ++it)
+    {
+        list[it].hasPlayed.assign(list.size(), false);  // Resize and fill with false
+        list[it].hasPlayed[it] = true;  // Team can't play itself
     }
 }
 

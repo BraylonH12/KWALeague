@@ -9,6 +9,8 @@
 #include <random>
 #include <math.h>
 
+#include <fstream>
+
 using namespace std;
 
 
@@ -29,6 +31,8 @@ struct Player
     //Ratings
     int shooting; //For points
     int passing; // For assists
+
+    int offense;
     int defense; //For steals/blocks
 
     //These factors can contribute to a teams offensive/defensive rating
@@ -57,6 +61,9 @@ Player createPlayer(string name, string position, int overall)
     newPlayer.position = position;
     newPlayer.overall = overall;
 
+    newPlayer.offense = 0;
+    newPlayer.defense = 0;
+
     newPlayer.points = 0;
     newPlayer.totalPoints = 0;
     newPlayer.assists = 0;
@@ -71,6 +78,30 @@ Player createPlayer(string name, string position, int overall)
     
     return newPlayer;
 }
+
+//In theory, add the vector list before starting season
+//  prevents multiple calls of reading through names
+Player createRandomPlayer(vector<string> nameList)
+{
+    //ifstream nameFile;
+
+    int min = 0;
+    int max = nameList.size();
+
+    random_device randomSeed;
+    mt19937 gen(randomSeed()); //random generator seed
+    uniform_int_distribution<> distr(min, max); //range 
+
+    int randomIndex = distr(gen);
+
+    createPlayer(nameList[randomIndex], "pg", 0);
+
+
+
+
+}
+
+
 
 int createOverall(int off, int def )
 {
